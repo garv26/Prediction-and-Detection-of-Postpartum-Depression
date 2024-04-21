@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Depression Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body{
+            background-image: url("{{ url_for('static', filename='img5.jpeg') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class="container2">
+        <h1>Depression Prediction Result</h1>
+        <div class="result-box">
+            <p>Predicted Depression Level:</p>
+            <p class="predicted-label">{{ predicted_label }}</p>
+            <div class="suggestions">
+                {% if predicted_label == 'No Depression' %}
+                    <h2>Suggestions for No Depression</h2>
+                    <ul>
+                        <li>Continue practicing self-care activities like regular exercise and relaxation techniques.</li>
+                        <li>Maintain a healthy and balanced diet.</li>
+                        <li>Engage in hobbies or activities that bring joy and fulfillment.</li>
+                        <li>Stay connected with supportive friends and family members.</li>
+                        <li>Consider volunteering or helping others to boost self-esteem.</li>
+                        <li>Explore mindfulness meditation or yoga for stress relief.</li>
+                    </ul>
+                {% elif predicted_label == 'Mild Depression' %}
+                    <h2>Suggestions for Mild Depression</h2>
+                    <ul>
+                        <li>Seek support from trusted family members or friends.</li>
+                        <li>Consider talking to a therapist or counselor for guidance.</li>
+                        <li>Explore mindfulness meditation or yoga for stress relief.</li>
+                        <li>Engage in regular physical activity to boost mood.</li>
+                        <li>Practice relaxation techniques like deep breathing or progressive muscle relaxation.</li>
+                        <li>Set achievable goals and celebrate small accomplishments.</li>
+                        <li>Avoid self-isolation and stay socially connected.</li>
+                    </ul>
+                {% elif predicted_label == 'Moderate Depression' %}
+                    <h2>Suggestions for Moderate Depression</h2>
+                    <ul>
+                        <li>Reach out to a mental health professional for counseling sessions.</li>
+                        <li>Discuss medication options with your healthcare provider if appropriate.</li>
+                        <li>Establish a daily routine and prioritize self-care activities.</li>
+                        <li>Engage in physical activities that you enjoy.</li>
+                        <li>Practice relaxation techniques like meditation or guided imagery.</li>
+                        <li>Set realistic goals and break tasks into manageable steps.</li>
+                        <li>Attend support groups or join online communities for encouragement.</li>
+                        <li>Avoid alcohol and recreational drugs.</li>
+                    </ul>
+                {% elif predicted_label == 'Severe Depression' %}
+                    <h2>Suggestions for Severe Depression</h2>
+                    <ul>
+                        <li>Seek immediate help from a mental health crisis line or emergency services.</li>
+                        <li>Enlist the support of loved ones to assist with daily tasks and responsibilities.</li>
+                        <li>Consider inpatient treatment at a mental health facility if recommended.</li>
+                        <li>Follow treatment recommendations from mental health professionals.</li>
+                        <li>Avoid making major life decisions during this challenging time.</li>
+                        <li>Engage in activities that provide comfort and distraction.</li>
+                        <li>Attend therapy sessions regularly and be open to different treatment approaches.</li>
+                        <li>Stay connected with a support network and communicate your needs.</li>
+                    </ul>
+                {% else %}
+                    <p>No specific suggestions available for this predicted level.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

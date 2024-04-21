@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction and Detection of Postpartum Depression Using Machine Learning</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script> 
+    <style>
+        body{
+            background-image: url("{{ url_for('static', filename='img4.jpeg') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>  
+<body>
+    <div class="container2"> 
+    <h1>Prediction and Detection of Postpartum Depression Using Machine Learning</h1>
+    <h2>Please select the answer that comes closest to how you have felt in the past 7 days</h2>
+    <form id="prediction-form" action="/predict" method="post" onsubmit="return validateForm()">   
+        <div class="question"><p>What is your age group?</p>
+        <input type="radio" name="What is your age group?" value="20-24 years"> 20-24 years
+        <input type="radio" name="What is your age group?" value="25-30 years"> 25-30 years
+        <input type="radio" name="What is your age group?" value="31-35 years"> 31-35 years
+        <input type="radio" name="What is your age group?" value="More than 35 years"> More than 35 years
+        </div>
+        <div class="question"><p>What is the age of your baby?</p>
+        <input type="radio" name="What is the age of your baby?" value="2 Weeks"> 2 Weeks
+        <input type="radio" name="What is the age of your baby?" value="4 Weeks"> 4 Weeks
+        <input type="radio" name="What is the age of your baby?" value="6 Weeks"> 6 Weeks
+        <input type="radio" name="What is the age of your baby?" value="More than 6 Weeks"> More than 6 Weeks
+        </div>
+        <div class="question"><p>How many children do you have?</p>
+        <input type="radio" name="How many children do you have?" value="1"> 1
+        <input type="radio" name="How many children do you have?" value="2"> 2
+        <input type="radio" name="How many children do you have?" value="3"> 3
+        <input type="radio" name="How many children do you have?" value="More than 3"> More than 3
+        </div>
+        <div class="question"><p>Highest level of Education</p>
+        <input type="radio" name="Highest level of Education" value="Primary education"> Primary education
+        <input type="radio" name="Highest level of Education" value="Higher secondary"> Higher secondary
+        <input type="radio" name="Highest level of Education" value="Under graduate"> Under graduate
+        <input type="radio" name="Highest level of Education" value="Post graduate"> Post graduate
+        </div>
+        <div class="question"><p>Employment Status</p>
+        <input type="radio" name="Employment Status" value="Employed"> Employed
+        <input type="radio" name="Employment Status" value="Home maker"> Home maker
+        <input type="radio" name="Employment Status" value="Business"> Business
+        <input type="radio" name="Employment Status" value="Out of Work since pregnancy"> Out of Work since pregnancy
+        </div>
+        <div class="question"><p>Type of Family</p>
+        <input type="radio" name="Type of Family" value="Nuclear family"> Nuclear family
+        <input type="radio" name="Type of Family" value="Joint family"> Joint family
+        </div>
+        <div class="question"><p>Annual Income of the Family</p>
+        <input type="radio" name="Annual Income of the Family" value="1 lakh - 4 lakh INR"> 2 - 4 lakh INR
+        <input type="radio" name="Annual Income of the Family" value="5 lakh - 8 lakh INR"> 5 - 8 lakh INR
+        <input type="radio" name="Annual Income of the Family" value="9 lakh - 12 lakh INR"> 9 - 12 lakh INR
+        <input type="radio" name="Annual Income of the Family" value="More than 12 lakh INR"> More than 12 lakh INR
+        </div>
+        <div class="question"><p>Do you feel good about yourself as a person?</p>
+        <input type="radio" name="Do you feel good about yourself as a person?" value="Yes"> Yes
+        <input type="radio" name="Do you feel good about yourself as a person?" value="No"> No
+        </div>
+        <div class="question"><p>Do you feel worthwhile?</p>
+        <input type="radio" name="Do you feel worthwhile?" value="Yes"> Yes
+        <input type="radio" name="Do you feel worthwhile?" value="No"> No
+        </div>
+        <div class="question"><p>Do you feel you have a number of good qualities as a person?</p>
+        <input type="radio" name="Do you feel you have a number of good qualities as a person?" value="Yes"> Yes
+        <input type="radio" name="Do you feel you have a number of good qualities as a person?" value="No"> No
+        </div>
+        <div class="question"><p>Had any thoughts of harming yourself?</p>
+        <input type="radio" name="Had any thoughts of harming yourself?" value="Yes"> Yes
+        <input type="radio" name="Had any thoughts of harming yourself?" value="No"> No
+        </div>
+        <div class="question"><p>Have you felt depressed DURING your pregnancy?</p>
+        <input type="radio" name="Have you felt depressed DURING your pregnancy?" value="Yes"> Yes
+        <input type="radio" name="Have you felt depressed DURING your pregnancy?" value="No"> No
+        </div>
+        <div class="question"><p>How mild or severe would you consider your depression was during pregnancy</p>
+        <input type="radio" name="How mild or severe would you consider your depression was during pregnancy" value="Mild depression"> Mild depression
+        <input type="radio" name="How mild or severe would you consider your depression was during pregnancy" value="Significant signs of depression"> Significant signs of depression
+        </div>
+        <div class="question"><p>Have you talked to your provider about depression during pregnancy?</p>
+        <input type="radio" name="Have you talked to your provider about depression during pregnancy?" value="Yes"> Yes
+        <input type="radio" name="Have you talked to your provider about depression during pregnancy?" value="No"> No
+        </div>
+        <div class="question"><p>Have you felt anxious during your pregnancy?</p>
+        <input type="radio" name="Have you felt anxious during your pregnancy?" value="Yes"> Yes
+        <input type="radio" name="Have you felt anxious during your pregnancy?" value="No"> No
+        </div>
+        <div class="question"><p>How long did you feel anxious?</p>
+        <input type="radio" name="How long did you feel anxious?" value="Not very often"> Not very often
+        <input type="radio" name="How long did you feel anxious?" value="Quite often"> Quite often
+        <input type="radio" name="How long did you feel anxious?" value="Most of the time"> Most of the time
+        </div>
+        <div class="question"><p>Have you ever been depressed BEFORE pregnancy?</p>
+        <input type="radio" name="Have you ever been depressed BEFORE pregnancy?" value="Yes"> Yes
+        <input type="radio" name="Have you ever been depressed BEFORE pregnancy?" value="No"> No
+        </div>
+        <div class="question"><p>Have you been under a physician’s care for depression before being pregnant?</p>
+        <input type="radio" name="Have you been under a physician’s care for depression before being pregnant?" value="Yes"> Yes
+        <input type="radio" name="Have you been under a physician’s care for depression before being pregnant?" value="No"> No
+        </div>
+        <div class="question"><p>Did the physician prescribe any medication for your depression before being pregnant?</p>
+        <input type="radio" name="Did the physician prescribe any medication for your depression before being pregnant?" value="Yes"> Yes
+        <input type="radio" name="Did the physician prescribe any medication for your depression before being pregnant?" value="No"> No
+        </div>
+        <div class="question"><p>Was your pregnancy planned?</p>
+        <input type="radio" name="Was your pregnancy planned?" value="Yes"> Yes
+        <input type="radio" name="Was your pregnancy planned?" value="No"> No
+        </div>
+        <div class="question"><p>Are you satisfied with your marriage/relationship?</p>
+        <input type="radio" name="Are you satisfied with your marriage/relationship?" value="Yes"> Yes
+        <input type="radio" name="Are you satisfied with your marriage/relationship?" value="No"> No
+        </div>
+        <div class="question"><p>Are you currently experiencing any marital/ relationship problems?</p>
+        <input type="radio" name="Are you currently experiencing any marital/ relationship problems?" value="Yes"> Yes
+        <input type="radio" name="Are you currently experiencing any marital/ relationship problems?" value="No"> No
+        </div>
+        <div class="question"><p>Do you feel you receive adequate emotional and instrumental (help with household chores and child care) support from your partner?</p>
+        <input type="radio" name="Do you feel you receive adequate emotional and instrumental (help with household chores and child care) support from your partner?" value="Yes"> Yes
+        <input type="radio" name="Do you feel you receive adequate emotional and instrumental (help with household chores and child care) support from your partner?" value="No"> No
+        </div>
+        <div class="question"><p>Do you feel you can rely on your partner when you need help?</p>
+        <input type="radio" name="Do you feel you can rely on your partner when you need help?" value="Yes"> Yes
+        <input type="radio" name="Do you feel you can rely on your partner when you need help?" value="No"> No
+        </div>
+        <div class="question"><p>Do you feel you can confide in your partner, family and friends?</p>
+        <input type="radio" name="Do you feel you can confide in your partner, family and friends?" value="Yes"> Yes
+        <input type="radio" name="Do you feel you can confide in your partner, family and friends?" value="No"> No
+        </div>
+        <div class="question"><p>Is your infant experiencing any health problems?</p>
+        <input type="radio" name="Is your infant experiencing any health problems?" value="Yes"> Yes
+        <input type="radio" name="Is your infant experiencing any health problems?" value="No"> No
+        </div>
+        <div class="question"><p>Are you having problems with your baby feeding?</p>
+        <input type="radio" name="Are you having problems with your baby feeding?" value="Yes"> Yes
+        <input type="radio" name="Are you having problems with your baby feeding?" value="No"> No
+        </div>
+        <div class="question"><p>Are you having problems with your baby sleeping?</p>
+        <input type="radio" name="Are you having problems with your baby sleeping?" value="Yes"> Yes
+        <input type="radio" name="Are you having problems with your baby sleeping?" value="No"> No
+        </div>
+        <div class="question"><p>Would you consider your baby irritable or fussy?</p>
+        <input type="radio" name="Would you consider your baby irritable or fussy?" value="Yes"> Yes
+        <input type="radio" name="Would you consider your baby irritable or fussy?" value="No"> No
+        </div>
+        <div class="question"><p>Since your new baby was born, how often have you felt down, depressed, or hopeless?</p>
+        <input type="radio" name="Since your new baby was born, how often have you felt down, depressed, or hopeless?" value="Never"> Never
+        <input type="radio" name="Since your new baby was born, how often have you felt down, depressed, or hopeless?" value="Sometimes"> Sometimes
+        <input type="radio" name="Since your new baby was born, how often have you felt down, depressed, or hopeless?" value="Quite often"> Quite often
+        <input type="radio" name="Since your new baby was born, how often have you felt down, depressed, or hopeless?" value="Most of the time"> Most of the time
+        </div>
+        <div class="question"><p>Since your new baby was born, how often have you had little interest or little pleasure in doing things?</p>
+        <input type="radio" name="Since your new baby was born, how often have you had little interest or little pleasure in doing things?" value="Never"> Never
+        <input type="radio" name="Since your new baby was born, how often have you had little interest or little pleasure in doing things?" value="Sometimes"> Sometimes
+        <input type="radio" name="Since your new baby was born, how often have you had little interest or little pleasure in doing things?" value="Quite often"> Quite often
+        <input type="radio" name="Since your new baby was born, how often have you had little interest or little pleasure in doing things?" value="Most of the time"> Most of the time
+        </div>   
+        <input type="submit" value="Predict">
+    </form>
+</div>
+</body>
+</html>
