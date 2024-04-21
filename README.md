@@ -10,3 +10,7 @@ Compiled and processed self-reported survey data from patients across multiple h
 Developed and evaluated various machine learning models to predict postnatal depression, ultimately selecting Support Vector Machine (SVM) classifier with 94% accuracy.
 Deployed the SVM model using Flask, creating an efficient and scalable web application.
 Designed and implemented a user-friendly graphical user interface (GUI) to facilitate intuitive interaction with the deployed model.
+
+## Result
+![screencapture-127-0-0-1-5000-2024-04-17-11_37_30](https://github.com/garv26/Prediction-and-Detection-of-Postpartum-Depression/assets/84435940/f5c92da4-5b79-4f93-80fb-88ef8dcd8b76)
+![screencapture-127-0-0-1-5000-predict-2024-04-17-11_37_55](https://github.com/garv26/Prediction-and-Detection-of-Postpartum-Depression/assets/84435940/5e84dce1-f96d-4db2-8cfa-088d2baf08c6)
